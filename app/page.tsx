@@ -1,6 +1,8 @@
 'use client';
 import Image from 'next/image';
 import { useRef, MouseEvent } from 'react';
+import tideStation from './tideStation';
+import TideStation from './tideStation';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement | null>(null);
@@ -28,6 +30,7 @@ export default function Home() {
         // style={{ width: '200vw', maxWidth: '200%', '!important': 'true' }}
         className='w-screen relative'
       />
+      <TideStation stationName='dunmore'></TideStation>
     </div>
 
     // <div className="bg-[url('/ireland.jpg')] bg-cover bg-no-repeat h-full w-screen">
