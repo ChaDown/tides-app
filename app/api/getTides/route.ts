@@ -7,8 +7,9 @@ interface QueryParameters {
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
   console.log('Req started');
+  console.log(req.url.searchParams)
   // Get the required parameters from the request
-  const { stationID } = req.query;
+  const stationID = req.url?.URLSearchParams.get(["stationID"]);
 
   console.log(stationID);
 
