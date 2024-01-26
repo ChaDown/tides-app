@@ -7,9 +7,9 @@ interface QueryParameters {
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
   console.log('Req started');
-  console.log(req.url.searchParams)
+  console.log(req.url)
   // Get the required parameters from the request
-  const stationID = req.url?.URLSearchParams.get(["stationID"]);
+  const stationID = "dunmore"
 
   console.log(stationID);
 
@@ -19,31 +19,34 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
       status: 400,
     });
   }
+// Get today's date in ISO 8601 format.
+const today = new Date().toISOString().split('T')[0];
+console.log(today);
 
-  // Get today's date in ISO 8601 format. This method creates two arrays with the split, and we want the first half, ie [0]
-  const today = new Date().toISOString().split('T')[0];
+// Find the station in your data
+const stationData = tideData.filter((entry) => entry.stationID === stationID);
+console.log(stationData);
 
-  // Find the station in your data
-  const stationData = tideData.filter((entry) => entry.stationID === stationID);
+if (stationData.length === 0) {
+  return new Response('Station not found', {
+    status: 404,
+  });
+}
 
-  if (stationData.length == 0) {
-    return new Response('Station not found', {
-      status: 404,
-    });
-  }
+// Find tide data for any date
+const getDateData = (date: string) => {
+  console.log(date);
+  console.log(stationData[0])
+  const dataArr = stationData[0].data;
+  const dateData = dataArr.filter((entry) => entry[1].startsWith(date));
+  return dateData;
+};
 
-  // Find tide data for any date
-  const getDateData = (date: string) => {
-    const dateData = stationData.filter((entry) => {
-      entry.data[1].includes(date);
-    });
+// Example: Get tide data for today
+const todayData = getDateData(today);
+console.log(todayData);
 
-    return dateData;
-  };
-
-  const todaysData = getDateData(today);
-
-  return new Response(JSON.stringify(todaysData), {
+  return new Response(JSON.stringify(todayData), {
     status: 200,
   });
 }
