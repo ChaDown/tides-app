@@ -1,17 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import tideData from '../../../data/tideData';
 
-interface QueryParameters {
-  stationID: string;
-}
-
 export async function GET(req: NextApiRequest) {
 
   const url = req.url;
 
   // Get today's date in ISO 8601 format.
-const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
+  // Get next 2 days 
+  const tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate() + 1);
+  const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
 
+  // Get the day after tomorrow's date
+  const dayAfterTomorrow = new Date();
+  dayAfterTomorrow.setDate(new Date().getDate() + 2);
+  const dayAfterTomorrowFormatted = dayAfterTomorrow.toISOString().split('T')[0];
 
 
   if (url) {
@@ -20,13 +24,13 @@ const today = new Date().toISOString().split('T')[0];
     // Now you can use stationID in your logic
 
     // Find the station in your data
-const stationData = tideData.filter((entry) => entry.stationID === stationID);
-// Find tide data for any date
-const getDateData = (date: string) => {
-  const dataArr = stationData[0].data;
-  const dateData = dataArr.filter((entry) => entry[1].startsWith(date));
-  return dateData;
-};
+    const stationData = tideData.filter((entry) => entry.stationID === stationID);
+    // Find tide data for any date
+    const getDateData = (date: string) => {
+    const dataArr = stationData[0].data;
+    const dateData = dataArr.filter((entry) => entry[1].startsWith(date));
+    return dateData;
+};  
 
 if (stationData.length === 0) {
   return new Response('Station not found', {
@@ -34,10 +38,14 @@ if (stationData.length === 0) {
   }); 
 }
 
-// Get tide data for today
-const todayData = getDateData(today);
+  // Get tide data for today
+  const todayData = getDateData(today);
+  const tomorrowData = getDateData(tomorrowFormatted);
+  const dayAfterTomorrowData = getDateData(dayAfterTomorrowFormatted);
 
-  return new Response(JSON.stringify(todayData), {
+  const result = [todayData, tomorrowData, dayAfterTomorrowData]
+
+  return new Response(JSON.stringify(result), {
     status: 200,
   });
 
@@ -49,5 +57,3 @@ const todayData = getDateData(today);
   }
 
 }
-
-
