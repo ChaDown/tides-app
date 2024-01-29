@@ -1,5 +1,6 @@
 export interface StationInfo {
   stationName: string;
+  coords: [number, number];
 }
 
 export interface TideEntry {

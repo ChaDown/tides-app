@@ -1,9 +1,10 @@
+"use client"
 import { StationInfo } from './interfaces';
 import addIcon from './add-circle.svg';
 import { useState, useEffect } from 'react';
 import { TideEntry } from './interfaces';
 
-const TideStation: React.FC<StationInfo> = ({ stationName }) => {
+const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
   const [tideData, setTideData] = useState<TideEntry>();
 
   useEffect(() => {
@@ -22,11 +23,10 @@ const TideStation: React.FC<StationInfo> = ({ stationName }) => {
   }, []); // Run once on component mount
 
   return (
-    <div>
-      <img src={addIcon} alt='Add Icon' />
-      <p>{tideData?.data}</p>
-    </div>
-  );
+    <p  style={{ position: 'absolute', left: `${coords[0] -1}%`, top: `${coords[1] - 5}%`, fontSize: '3rem', color: 'red' }}>
+    .
+  </p>
+  )
 };
 
 export default TideStation;

@@ -3,7 +3,7 @@ Killybegs - 43.5, 21.6
 Sligo - 41.1, 30.1
 Malin - 61.6, 3.08
 Ballyglass - 16.1, 31.1
-Near Croag pat - 15.9 , 43.18
+Roonagh - 15.9 , 43.18
 Rossaveel - 20.8, 53.4
 Galway - 33.05, 55
 InisMore - 20.15, 58.3
