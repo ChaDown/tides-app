@@ -1,6 +1,7 @@
 "use client"
 import { StationInfo } from './interfaces';
 import addIcon from './add-circle.svg';
+import buoyIcon from './buoy.png';
 import { useState, useEffect } from 'react';
 import { TideEntry } from './interfaces';
 
@@ -23,9 +24,19 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
   }, []); // Run once on component mount
 
   return (
-    <p  style={{ position: 'absolute', left: `${coords[0] -1}%`, top: `${coords[1] - 5}%`, fontSize: '3rem', color: 'red' }}>
-    .
-  </p>
+<button>
+  <img
+    src='./buoy.png'
+    alt="Tide station buoy icon"
+    style={{
+      position: 'absolute',
+      left: `${coords[0]}%`,
+      top: `${coords[1]}%`,
+      height: '2rem'
+    }}
+    className="animate-flash"
+  />
+</button>
   )
 };
 

@@ -22,10 +22,6 @@ export default function Home() {
       ))}
     </div>
 
-//
 
-    // <div className="bg-[url('/ireland.jpg')] bg-cover bg-no-repeat h-full w-screen">
-    //   {/* Your content goes here */}
-    // </div>
   );
 }
