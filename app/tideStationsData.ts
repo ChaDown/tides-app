@@ -18,7 +18,7 @@ export const stationData: StationInfo[] = [
       "coords": [41.1, 30.1]
     },
     {
-        "stationName": "malin",
+        "stationName": "malin_head",
         "coords": [61.6, 3.08]
       },
       {
@@ -38,13 +38,10 @@ export const stationData: StationInfo[] = [
         "coords": [33.05, 55]
       },
       {
-        "stationName": "inismor",
+        "stationName": "inishmore",
         "coords": [20.15, 58.3]
       },
-      {
-        "stationName": "doolin",
-        "coords": [26.05, 63.1]
-      },
+    
       {
         "stationName": "kilrush",
         "coords": [22.3, 70.05]
@@ -62,7 +59,7 @@ export const stationData: StationInfo[] = [
         "coords": [15.1, 93.5]
       },
       {
-        "stationName": "union hall",
+        "stationName": "union_hall",
         "coords": [30, 95]
       },
       {
@@ -86,7 +83,7 @@ export const stationData: StationInfo[] = [
         "coords": [84.3, 65.9]
       },
       {
-        "stationName": "dublin port",
+        "stationName": "dublin_port",
         "coords": [83.5, 53.2]
       },
       {
@@ -98,7 +95,12 @@ export const stationData: StationInfo[] = [
         "coords": [85.7, 47.9]
       },
       {
-        "stationName": "port oriel",
+        "stationName": "port_oriel",
         "coords": [80.7, 36.9]
       }
   ]
+
+  // {
+  //   "stationName": "doolin",
+  //   "coords": [26.05, 63.1]
+  // },

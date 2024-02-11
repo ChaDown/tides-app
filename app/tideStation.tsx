@@ -27,7 +27,7 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
 <button>
   <img
     src='./buoy.png'
-    alt="Tide station buoy icon"
+    alt="Tide station buoy icon clickable"
     style={{
       position: 'absolute',
       left: `${coords[0]}%`,
