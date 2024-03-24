@@ -36,24 +36,26 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
   };
 
   return (
-    <div>
-<button>
-  <img
-    src='./buoy.png'
-    alt="Tide station buoy icon clickable"
-    style={{
-      position: 'absolute',
-      left: `${coords[0]}%`,
-      top: `${coords[1]}%`,
-      height: '2rem'
-    }}
-    className="animate-flash"
-    onClick={handleIconClick}
-  />
-</button>
- <TideStationModal isOpen={isModalOpen} onClose={handleCloseModal} stationName={stationName} tideData={tideData} />
- </div>
+//     <div>
+// <button>
+<img
+  src='./buoy.png'
+  alt="Tide station buoy icon clickable"
+  style={{
+    position: 'absolute',
+    left: `${coords[0] - 2}%`,
+    top: `${coords[1] - 2}%`,
+    height: '2rem'
+  }}
+  className="animate-flash"
+  onClick={handleIconClick}
+/>
+
   )
 };
+
+{/* </button>
+ <TideStationModal isOpen={isModalOpen} onClose={handleCloseModal} stationName={stationName} tideData={tideData} />
+ </div> */}
 
 export default TideStation;
