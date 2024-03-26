@@ -3,14 +3,13 @@ import { StationInfo } from './interfaces';
 import addIcon from './add-circle.svg';
 import buoyIcon from './buoy.png';
 import { useState, useEffect } from 'react';
-import { TideEntry } from './interfaces';
+import { FilteredTide } from './interfaces';
 import TideStationModal from './TideStationModal'; // Import the TideStationModal component
 
 
 const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
-  const [tideData, setTideData] = useState<TideEntry>();
+  const [tideData, setTideData] = useState<FilteredTide | null>(null);;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // State for controlling modal visibility
-
 
   useEffect(() => {
     const fetchTideData = async () => {
@@ -19,8 +18,7 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
       if (!response.ok) {
         throw new Error(`Failed to fetch tide data: ${response.statusText}`);
       }
-      const data: TideEntry = await response.json();
-     
+      const data: FilteredTide = await response.json();
       setTideData(data);
     };
 
@@ -29,6 +27,7 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
 
   const handleIconClick = () => {
     setIsModalOpen(true); // Open the modal when the icon is clicked
+    
   };
 
   const handleCloseModal = () => {
@@ -36,26 +35,25 @@ const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {
   };
 
   return (
-//     <div>
-// <button>
+    <span>
+<button onClick={handleIconClick}>
 <img
   src='./buoy.png'
   alt="Tide station buoy icon clickable"
   style={{
     position: 'absolute',
     left: `${coords[0] - 2}%`,
-    top: `${coords[1] - 2}%`,
+    top: `${coords[1] - 3.5}%`,
     height: '2rem'
   }}
   className="animate-flash"
-  onClick={handleIconClick}
-/>
-
+/> 
+</button>
+ <TideStationModal isOpen={isModalOpen} onClose={handleCloseModal} stationName={stationName} tideData={tideData} />
+</span>
   )
 };
 
-{/* </button>
- <TideStationModal isOpen={isModalOpen} onClose={handleCloseModal} stationName={stationName} tideData={tideData} />
- </div> */}
-
 export default TideStation;
+
+

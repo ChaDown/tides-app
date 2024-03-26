@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { SingleDayTide, filteredTide } from '@/app/interfaces';
 import tideData from '../../../data/tideData';
 
 export async function GET(req: NextApiRequest) {
@@ -39,11 +40,15 @@ if (stationData.length === 0) {
 }
 
   // Get tide data for today
-  const todayData = getDateData(today);
-  const tomorrowData = getDateData(tomorrowFormatted);
-  const dayAfterTomorrowData = getDateData(dayAfterTomorrowFormatted);
+  const todayData: SingleDayTide[] = getDateData(today);
+  const tomorrowData: SingleDayTide[] = getDateData(tomorrowFormatted);
+  const dayAfterTomorrowData: SingleDayTide[] = getDateData(dayAfterTomorrowFormatted);
 
-  const result = [todayData, tomorrowData, dayAfterTomorrowData]
+  const result: filteredTide = {
+    today: todayData,
+    todayNext: tomorrowData,
+    todayNextNext: dayAfterTomorrowData
+  }
 
   return new Response(JSON.stringify(result), {
     status: 200,
