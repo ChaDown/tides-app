@@ -65,9 +65,10 @@ const TideStationModal: React.FC<TideStationModalProps> = ({
     else setDayIndex(0);
   }
 
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={handleBackdropClick}>
-      <div className="bg-white p-4 rounded-md sm:w-2/3 md:w-2/3 lg:w-1/5 xl:w-1/6">
+      <div className="bg-white p-4 rounded-md sm:w-1/3 md:w-1/3 lg:w-1/5 xl:w-1/6">
         <h2 className="text-xl font-bold mb-2">{capitalizeAndReplace(stationName)}</h2>
         <div className='flex justify-between my-2'>
         {dayIndex === 0 && <div>Today</div>}
