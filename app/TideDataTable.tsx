@@ -8,8 +8,6 @@ interface TideStationModalProps {
 
 const TideStationModal: React.FC<TideStationModalProps> = ({tideData, dayIndex}) => {
 
-    console.log(dayIndex);
-
 // Seperate the different days tide into an array
 const dailyTidesArray = [];
 

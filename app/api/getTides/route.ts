@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { SingleDayTide, filteredTide } from '@/app/interfaces';
+import { SingleDayTide, FilteredTide } from '@/app/interfaces';
 import tideData from '../../../data/tideData';
 
 export async function GET(req: NextApiRequest) {
@@ -44,7 +44,7 @@ if (stationData.length === 0) {
   const tomorrowData: SingleDayTide[] = getDateData(tomorrowFormatted);
   const dayAfterTomorrowData: SingleDayTide[] = getDateData(dayAfterTomorrowFormatted);
 
-  const result: filteredTide = {
+  const result: FilteredTide = {
     today: todayData,
     todayNext: tomorrowData,
     todayNextNext: dayAfterTomorrowData

@@ -1,10 +1,8 @@
 "use client"
 import { StationInfo } from './interfaces';
-import addIcon from './add-circle.svg';
-import buoyIcon from './buoy.png';
 import { useState, useEffect } from 'react';
 import { FilteredTide } from './interfaces';
-import TideStationModal from './TideStationModal'; // Import the TideStationModal component
+import TideStationModal from './TideStationModal'; // 
 
 
 const TideStation: React.FC<StationInfo> = ({ stationName, coords }) => {

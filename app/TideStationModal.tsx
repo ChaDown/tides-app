@@ -72,8 +72,8 @@ const TideStationModal: React.FC<TideStationModalProps> = ({
         <h2 className="text-xl font-bold mb-2">{capitalizeAndReplace(stationName)}</h2>
         <div className='flex justify-between my-2'>
         {dayIndex === 0 && <div>Today</div>}
-        {dayIndex === 1 && <div>Tomorrow</div>}
-        {dayIndex === 2 && <div>Day After Tomorrow</div>}
+        {dayIndex === 1 && <div>Today + 1</div>}
+        {dayIndex === 2 && <div>Today + 2</div>}
         <button
         className="flex items-center justify-center bg-orange-500 text-white rounded-full w-6 h-6"
         onClick={handleClickNext}

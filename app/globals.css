@@ -34,3 +34,21 @@
 .animate-flash {
   animation: pulse 1s infinite; 
 }
+
+.home-screen { 
+  position: relative;
+  width: 100%;
+  height: fit-content;
+}
+
+@media only screen and (max-width: 600px) {
+  .home-screen {
+    width: 150%;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
