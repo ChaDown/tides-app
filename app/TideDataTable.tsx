@@ -26,6 +26,8 @@ if (tideData) {
             </div>
         )
     })}
+     {/* Add an extra div if data only has 3 readings, for neatness and uniformity */}
+    { !dailyTidesArray[dayIndex][3] ? <div className='tide-reading' ></div> : ""}
 </section>
     )
 

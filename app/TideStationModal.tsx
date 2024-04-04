@@ -21,6 +21,50 @@ const TideStationModal: React.FC<TideStationModalProps> = ({
 
   const [dayIndex, setDayIndex] = useState<number>(0);
 
+  // Want to find the nearest full tide time and colour the modal accordingly
+  // Calculate time until the next tide
+const calculateTimeUntilNextTide = () => {
+  if (!tideData) return 0; // Return 0 if tide data is not available
+  const currentTime = new Date().getTime(); // Current time in milliseconds
+  
+  // Find the closest future tide time
+  let closestFutureTide = null; // Initialize closest future tide time as null
+  let closestTideType = null;
+
+  for (let i = 0; i < tideData.today.length; i++) {
+    // Need to slice to isolate the time part
+    const tideTimeObj = new Date(tideData.today[i][1]);
+    const tideTime = tideTimeObj.getTime();
+    if (tideTime > currentTime && (!closestFutureTide || tideTime < closestFutureTide)) {
+      closestFutureTide = tideTime;
+      closestTideType = tideData.today[i][4];
+    }
+  }
+
+  // If no future tide time found, return 0
+  if (!closestFutureTide) return 0;
+
+  // Calculate time until the closest future tide
+  const timeUntilNextTide = closestFutureTide - currentTime;
+
+  // Now calculate percentage full tide, based on a tidal swing of 380 minutes in ms 22800000
+  let percentageHighTide = 0;
+
+  if (closestTideType && closestTideType == "HIGH") {
+    percentageHighTide = ((22800000 - timeUntilNextTide) / 22380000) * 100;
+  }
+
+  if (closestTideType && closestTideType == "LOW") {
+    percentageHighTide = (timeUntilNextTide / 22800000) * 100;
+  }
+
+  console.log(percentageHighTide);
+
+  return percentageHighTide;
+};
+
+calculateTimeUntilNextTide();
+
   if (!isOpen) return null;
 
     // Handle click on backdrop to close the modal
